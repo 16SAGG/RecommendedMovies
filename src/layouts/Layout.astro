@@ -1,0 +1,113 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="view-transition" content="same-origin"/>
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 136, 58, 234;
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 30%,
+			white 60%
+		);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background: rgb(3 7 18);
+		background-size: 224px;
+	}
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+	}
+	body {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: auto;
+		max-width: 56rem;
+	}
+	header {
+		padding: 2rem 0;
+	}
+	main {
+		padding: 0 1rem;
+	}
+	.gradient {
+		z-index: 1;
+		background: linear-gradient(0deg,rgb(3 7 18),transparent 65%);
+		animation-name: fade-in;
+		animation-duration: 1.5s;
+	}
+	.fade-in-element {
+		animation-name: fade-in;
+		animation-duration: 1s;
+	}
+	@keyframes fade-in{
+		from {
+			opacity: 0;
+		}
+  		to {
+			opacity: 1;
+		}
+	}
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 0.5s;
+	}
+
+</style>
+
+<script>
+	const viewTransitionIsAvailable = document.startViewTransition != undefined
+	if (viewTransitionIsAvailable){
+		window.navigation.addEventListener('navigate', (event)=>{
+			const destinationUrl = new URL(event.destination.url)
+			const currentUrlAndDestinationUrlDontHaveTheSameOrigin = location.origin != destinationUrl.origin
+			
+			if (currentUrlAndDestinationUrlDontHaveTheSameOrigin) return
+			event.intercept({
+				async handler() {
+					const response = await fetch(destinationUrl.pathname)
+					const text = await response.text()
+
+					const [, data] = text.match(/<body>([\s\S]*)<\/body>/i)
+					
+					document.startViewTransition(() =>{
+						document.body.innerHTML = data
+						document.documentElement.scrollTop = 0
+					})
+				}
+			})
+		})
+	}
+</script>

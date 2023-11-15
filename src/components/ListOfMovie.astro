@@ -1,0 +1,16 @@
+---
+import MovieItem from "./MovieItem.astro"
+import {movies} from "../data/movies"
+---
+
+<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+    {
+        movies.map(({id, title, image}) => {
+            return (
+                <li>
+                    <MovieItem id={id} title={title} image={image}/>
+                </li>
+            )
+        })
+    }
+</ul>

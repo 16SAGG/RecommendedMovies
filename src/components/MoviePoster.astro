@@ -1,0 +1,9 @@
+---
+const {
+    title,
+    image,
+    style,
+} = Astro.props
+---
+
+<img class="aspect-[16:9] h-ful w-full object-cover rounded-lg" loading="lazy" src={image} alt={`${title} poster`} style={style}>
