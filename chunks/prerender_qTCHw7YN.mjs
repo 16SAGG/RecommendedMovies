@@ -1,14 +1,30 @@
-/* empty css                            */
-import { c as createAstro, d as createComponent, r as renderTemplate, m as maybeRenderHead, e as addAttribute, h as renderComponent } from '../astro_2q5if4aT.mjs';
+/* empty css                           */
+import { c as createAstro, a as createComponent, r as renderTemplate, b as addAttribute, d as renderHead, e as renderSlot, m as maybeRenderHead, f as renderComponent } from './astro_vat-cMcX.mjs';
 import 'kleur/colors';
 import 'html-escaper';
 import 'clsx';
 import 'cssesc';
-import { $ as $$Layout } from './404_bFFhm9xL.mjs';
 
-const $$Astro$1 = createAstro();
+const $$Astro$7 = createAstro("https://16SAGG.github.io");
+const $$Layout = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$7, $$props, $$slots);
+  Astro2.self = $$Layout;
+  const { title } = Astro2.props;
+  return renderTemplate`<html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator"${addAttribute(Astro2.generator, "content")}><meta name="view-transition" content="same-origin"><title>${title}</title>${renderHead()}</head> <body> ${renderSlot($$result, $$slots["default"])}  </body></html>`;
+}, "C:/Users/NB 3300/workspace/Recommended Movies/recommended-movies-sagg/src/layouts/Layout.astro", void 0);
+
+const $$Astro$6 = createAstro("https://16SAGG.github.io");
+const $$Title = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$6, $$props, $$slots);
+  Astro2.self = $$Title;
+  return renderTemplate`${maybeRenderHead()}<header> <h1 class="text-4xl font-bold text-violet-300 text-center">
+Recommended
+<span class="block text-[74px] leading-[72px]">Movies</span> <span class="block text-xl leading-[48px]">--by SAGG--</span> </h1> </header>`;
+}, "C:/Users/NB 3300/workspace/Recommended Movies/recommended-movies-sagg/src/components/Title.astro", void 0);
+
+const $$Astro$5 = createAstro("https://16SAGG.github.io");
 const $$MoviePoster = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$5, $$props, $$slots);
   Astro2.self = $$MoviePoster;
   const {
     title,
@@ -17,6 +33,18 @@ const $$MoviePoster = createComponent(async ($$result, $$props, $$slots) => {
   } = Astro2.props;
   return renderTemplate`${maybeRenderHead()}<img class="aspect-[16:9] h-ful w-full object-cover rounded-lg" loading="lazy"${addAttribute(image, "src")}${addAttribute(`${title} poster`, "alt")}${addAttribute(style, "style")}>`;
 }, "C:/Users/NB 3300/workspace/Recommended Movies/recommended-movies-sagg/src/components/MoviePoster.astro", void 0);
+
+const $$Astro$4 = createAstro("https://16SAGG.github.io");
+const $$MovieItem = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$4, $$props, $$slots);
+  Astro2.self = $$MovieItem;
+  const {
+    id,
+    title,
+    image
+  } = Astro2.props;
+  return renderTemplate`${maybeRenderHead()}<a class="fade-in-element hover:scale-105 inline-block transition-all contrast-75 hover:contrast-100 hover:shadow-2xl"${addAttribute(`/RecommendedMovies/${id}`, "href")}> ${renderComponent($$result, "MoviePoster", $$MoviePoster, { "title": title, "image": image, "style": `view-transition-name: movie-move-${id}` })}</a>`;
+}, "C:/Users/NB 3300/workspace/Recommended Movies/recommended-movies-sagg/src/components/MovieItem.astro", void 0);
 
 const movies = [
     {
@@ -75,7 +103,50 @@ const movies = [
     }
 ];
 
-const $$Astro = createAstro();
+const $$Astro$3 = createAstro("https://16SAGG.github.io");
+const $$ListOfMovie = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
+  Astro2.self = $$ListOfMovie;
+  return renderTemplate`${maybeRenderHead()}<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"> ${movies.map(({ id, title, image }) => {
+    return renderTemplate`<li> ${renderComponent($$result, "MovieItem", $$MovieItem, { "id": id, "title": title, "image": image })} </li>`;
+  })} </ul>`;
+}, "C:/Users/NB 3300/workspace/Recommended Movies/recommended-movies-sagg/src/components/ListOfMovie.astro", void 0);
+
+const $$Astro$2 = createAstro("https://16SAGG.github.io");
+const $$Index = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
+  Astro2.self = $$Index;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Recommended Movies by SAGG" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Title", $$Title, {})} ${maybeRenderHead()}<main class="pb-10 px-6 sm:px-4"> ${renderComponent($$result2, "ListOfMovie", $$ListOfMovie, { "id": true })} </main> ` })}`;
+}, "C:/Users/NB 3300/workspace/Recommended Movies/recommended-movies-sagg/src/pages/index.astro", void 0);
+
+const $$file$2 = "C:/Users/NB 3300/workspace/Recommended Movies/recommended-movies-sagg/src/pages/index.astro";
+const $$url$2 = "/RecommendedMovies";
+
+const index = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+	__proto__: null,
+	default: $$Index,
+	file: $$file$2,
+	url: $$url$2
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const $$Astro$1 = createAstro("https://16SAGG.github.io");
+const $$404 = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
+  Astro2.self = $$404;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "404 Not Found" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<h1>Not Found</h1> ` })}`;
+}, "C:/Users/NB 3300/workspace/Recommended Movies/recommended-movies-sagg/src/pages/404.astro", void 0);
+
+const $$file$1 = "C:/Users/NB 3300/workspace/Recommended Movies/recommended-movies-sagg/src/pages/404.astro";
+const $$url$1 = "/RecommendedMovies/404";
+
+const _404 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+	__proto__: null,
+	default: $$404,
+	file: $$file$1,
+	url: $$url$1
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const $$Astro = createAstro("https://16SAGG.github.io");
 const $$movie = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$movie;
@@ -88,13 +159,13 @@ const $$movie = createComponent(async ($$result, $$props, $$slots) => {
 }, "C:/Users/NB 3300/workspace/Recommended Movies/recommended-movies-sagg/src/pages/[movie].astro", void 0);
 
 const $$file = "C:/Users/NB 3300/workspace/Recommended Movies/recommended-movies-sagg/src/pages/[movie].astro";
-const $$url = "/[movie]";
+const $$url = "/RecommendedMovies/[movie]";
 
 const _movie_ = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-    __proto__: null,
-    default: $$movie,
-    file: $$file,
-    url: $$url
+	__proto__: null,
+	default: $$movie,
+	file: $$file,
+	url: $$url
 }, Symbol.toStringTag, { value: 'Module' }));
 
-export { $$MoviePoster as $, _movie_ as _, movies as m };
+export { _404 as _, _movie_ as a, index as i };
