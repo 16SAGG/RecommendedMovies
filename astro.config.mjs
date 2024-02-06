@@ -4,8 +4,8 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://16sagg.github.io',
-  base: '/my-repo',
+  site: 'https://16SAGG.github.io',
+  base: '/RecommendedMovies',
   integrations: [tailwind()],
   output: 'server',
   adapter: node({
