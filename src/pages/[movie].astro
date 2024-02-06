@@ -3,6 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import { movies } from "../data/movies";
 import MoviePoster from "../components/MoviePoster.astro";
 
+export function getStaticPaths() {
+  return [
+    {params: {movie: "kiki-delivery-service"}},
+  ];
+}
+
 const {movie} = Astro.params
 
 const information = movies.find(m => m.id === movie)
