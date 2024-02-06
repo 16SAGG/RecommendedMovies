@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { movies } from "../data/movies";
+import MoviePoster from "../components/MoviePoster.astro";
+
+const {movie} = Astro.params
+
+const information = movies.find(m => m.id === movie)
+
+const informationDoesNotExist = information === undefined
+if (informationDoesNotExist) return Astro.redirect("/404")
+---
+
+
+<Layout title={`${information.title} - Movie`}>
+    <div class="max-w-3xl text-violet-300 pb-10">
+        <header class="grid grid-rows-1 grid-cols-1 py-0 pb-5 sm:pb-8 md:py-8">
+            <picture class="row-start-1 col-start-1">
+                <MoviePoster title={information.title} image={information.image} style={`view-transition-name: movie-move-${information.id}`}>
+            </picture>
+            <div class="row-start-1 col-start-1 gradient">
+                <h1 class="relative top-3/4  p-5 text-2xl sm:text-4xl font-bold ">{information.title}</h1>
+            </div>
+        </header>
+
+        <main class="flex p-0 gap-8 px-5">
+            <section class="grow">
+                {information.synopsis}
+            </section>
+
+            <aside class="flex flex-col gap-2 min-w-[120px] md:min-w-[240px]">
+                <div>
+                    <span class="text-violet-200"><strong>Director: </strong></span>
+                    <span>{information.director}</span>
+                </div>
+                
+                <div>
+                    <span class="text-violet-200"><strong>Writer: </strong></span>
+                    <span>{information.writer}</span>
+                </div>
+
+                <div>
+                    <span class="text-violet-200"><strong>Studio: </strong></span>
+                    <span>{information.studio}</span>
+                </div>
+            </aside>
+        </main>
+    </div>
+</Layout>
